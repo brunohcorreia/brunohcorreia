@@ -38,18 +38,27 @@ CONFIG = {
             ("Org",    "More in Common Brasil"),
             ("Edu",    "BSc Sistemas de Informação, USP"),
         ]},
+        {"header": "Work", "rows": [
+            ("Research",   "surveys & análise de dados"),
+            ("Collection", "APIs de redes sociais"),
+            ("Output",     "relatórios & dashboards"),
+            ("Mission",    "usar dados para o bem comum"),
+        ]},
         {"header": "Skills", "rows": [
             ("Languages", "Python, Rust, SQL"),
             ("Data",      "pandas, PostgreSQL, SQLite"),
             ("Tools",     "Docker, Git, Google Cloud"),
         ]},
+        {"header": "Off-hours", "rows": [
+            ("Code",      "open source, game dev"),
+            ("Tinkering", "homelab, self-hosting"),
+        ]},
         {"header": "Contact", "rows": [
-            ("Email",  "bruno@moreincommon.org.br"),
-            ("GitHub", "brunohcorreia"),
+            ("Email",    "bruno@moreincommon.org.br"),
+            ("LinkedIn", "bruno-correia"),
+            ("GitHub",   "brunohcorreia"),
         ]},
     ],
-    # Arte da esquerda: lida deste arquivo (sua foto em ASCII).
-    # Pra trocar a arte, é só editar/substituir o ascii_art.txt.
     "ascii_file": "ascii_art.txt",
 }
 
