@@ -22,6 +22,7 @@ Dependência:  requests   (instalada pelo workflow)
 import os
 import json
 import sys
+import hashlib
 
 # ===========================================================================
 #  👇  SUAS INFORMAÇÕES — edite à vontade  👇
@@ -35,35 +36,15 @@ CONFIG = {
             ("Uptime", "24 anos"),
             ("Host",   "Data & Research Analyst"),
             ("Org",    "More in Common Brasil"),
-            ("Builds", "ferramentas internas pro time"),
             ("Edu",    "BSc Sistemas de Informação, USP"),
-            ("Kernel", "pandas + café v3.14"),
-            ("IDE",    "Zed, Micro"),
         ]},
-        {"header": "Languages", "rows": [
-            ("Programming", "Python, Rust"),
-            ("Web",         "React"),
-            ("Markup",      "Markdown, LaTeX"),
-            ("Spoken",      "Português, English"),
-        ]},
-        {"header": "Stack", "rows": [
-            ("Data",    "pandas, SQL, PostgreSQL, SQLite"),
-            ("DevOps",  "Docker, Git"),
-            ("Cloud",   "Google Cloud, Colab"),
-            ("Homelab", "Docker Compose, Coolify, Tailscale"),
-        ]},
-        {"header": "Hobbies", "rows": [
-            ("Software", "Open Source, Game Dev"),
-            ("Hardware", "Homelab, Homeserver"),
-        ]},
-        {"header": "Ethos", "rows": [
-            ("Mission", "Tecnologia a serviço das pessoas"),
-            ("Impact",  "Dados para aproximar, não polarizar"),
-            ("Values",  "Software livre e bem comum"),
+        {"header": "Skills", "rows": [
+            ("Languages", "Python, Rust, SQL"),
+            ("Data",      "pandas, PostgreSQL, SQLite"),
+            ("Tools",     "Docker, Git, Google Cloud"),
         ]},
         {"header": "Contact", "rows": [
-            ("Email",  "bhcorreia11@gmail.com"),
-            ("Work",   "bruno@moreincommon.org.br"),
+            ("Email",  "bruno@moreincommon.org.br"),
             ("GitHub", "brunohcorreia"),
         ]},
     ],
@@ -196,28 +177,32 @@ def fetch_stats(token, login):
     stars = sum(r["stargazerCount"] for r in repo_list)
 
     # 3) linhas de código + commits do usuário em cada repo (com cache)
-    cache = load_cache()
+    #    A chave do cache é um HASH SHA-256 do nome do repo. Assim o arquivo
+    #    em cache/ (que é commitado no repo público) NUNCA expõe os nomes dos
+    #    seus repositórios — inclusive os privados. O cache é reconstruído do
+    #    zero a cada rodada, então nenhum nome antigo sobra no arquivo.
+    old_cache = load_cache()
+    new_cache = {}
     total_commits = total_add = total_del = 0
     for r in repo_list:
         name = r["nameWithOwner"]
         branch = r.get("defaultBranchRef")
         if not branch or not branch.get("target"):
             continue
+        key = hashlib.sha256(name.encode("utf-8")).hexdigest()
         n_commits = branch["target"]["history"]["totalCount"]  # commits no branch
-        cached = cache.get(name)
+        cached = old_cache.get(key)
         if cached and cached.get("branch_commits") == n_commits:
-            total_commits += cached["commits"]
-            total_add += cached["additions"]
-            total_del += cached["deletions"]
-            continue
-        # recontar esse repo (mudou desde o último cache)
-        c, a, d = count_repo(token, owner_id, name)
-        cache[name] = {"branch_commits": n_commits,
-                       "commits": c, "additions": a, "deletions": d}
+            c, a, d = cached["commits"], cached["additions"], cached["deletions"]
+        else:
+            # recontar esse repo (novo ou mudou desde o último cache)
+            c, a, d = count_repo(token, owner_id, name)
+        new_cache[key] = {"branch_commits": n_commits,
+                          "commits": c, "additions": a, "deletions": d}
         total_commits += c
         total_add += a
         total_del += d
-    save_cache(cache)
+    save_cache(new_cache)
 
     return {
         "repos": repos, "contributed": contributed, "stars": stars,
@@ -307,9 +292,8 @@ def stats_section(s):
                    ("Stars: ", "label"), (fmt(s["stars"]), "value")]),
         ("Commits", [(fmt(s["commits"]), "value"), (" | ", "text"),
                      ("Followers: ", "label"), (fmt(s["followers"]), "value")]),
-        ("Lines of Code", [(fmt(s["loc"]), "value"), (" ( ", "text"),
-                           (f'{fmt(s["add"])}++', "green"), (", ", "text"),
-                           (f'{fmt(s["del"])}--', "red"), (" )", "text")]),
+        ("Lines of Code", [(f'+{fmt(s["add"])}', "green"), ("  /  ", "text"),
+                           (f'-{fmt(s["del"])}', "red")]),
     ]}
 
 
