@@ -1,16 +1,15 @@
-## Eu amo minha mulher
-
 <!--
-**brunohcorreia/brunohcorreia** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+  Este README mostra o card "neofetch" que o today.py gera.
+  O <picture> troca entre tema escuro e claro conforme o GitHub do visitante.
+  Os números são atualizados sozinhos pelo GitHub Actions (.github/workflows/profile.yml).
 -->
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="./dark_mode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./light_mode.svg">
+  <img alt="Bruno Henrique Ferreira Correia — perfil do GitHub" src="./dark_mode.svg">
+</picture>
+
+</div>
