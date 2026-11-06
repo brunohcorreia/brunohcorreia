@@ -1,0 +1,110 @@
+{
+ "brunohcorreia/IC-CEBRAP": {
+  "branch_commits": 4,
+  "commits": 4,
+  "additions": 611,
+  "deletions": 2
+ },
+ "brunohcorreia/my-arch-configs": {
+  "branch_commits": 5,
+  "commits": 5,
+  "additions": 1067,
+  "deletions": 50
+ },
+ "brunohcorreia/ProjTC": {
+  "branch_commits": 1128,
+  "commits": 5,
+  "additions": 501,
+  "deletions": 881
+ },
+ "brunohcorreia/RP2": {
+  "branch_commits": 13,
+  "commits": 6,
+  "additions": 792,
+  "deletions": 3
+ },
+ "brunohcorreia/antique-atlas-still-life-compat": {
+  "branch_commits": 3,
+  "commits": 3,
+  "additions": 19314,
+  "deletions": 0
+ },
+ "brunohcorreia/forgero-rebalanced": {
+  "branch_commits": 1,
+  "commits": 1,
+  "additions": 872,
+  "deletions": 0
+ },
+ "brunohcorreia/mc-rebalanced": {
+  "branch_commits": 2,
+  "commits": 2,
+  "additions": 1276,
+  "deletions": 0
+ },
+ "brunohcorreia/zencrowd": {
+  "branch_commits": 251,
+  "commits": 18,
+  "additions": 18641,
+  "deletions": 2795254
+ },
+ "brunohcorreia/Kromari": {
+  "branch_commits": 1,
+  "commits": 1,
+  "additions": 23,
+  "deletions": 0
+ },
+ "brunohcorreia/IC-fapesp": {
+  "branch_commits": 8,
+  "commits": 8,
+  "additions": 62138,
+  "deletions": 515
+ },
+ "brunohcorreia/more-in-common-api": {
+  "branch_commits": 35,
+  "commits": 35,
+  "additions": 15563,
+  "deletions": 1844
+ },
+ "brunohcorreia/EP-Sintese-CG": {
+  "branch_commits": 3,
+  "commits": 3,
+  "additions": 4383,
+  "deletions": 0
+ },
+ "brunohcorreia/Meta-Rotina": {
+  "branch_commits": 41,
+  "commits": 41,
+  "additions": 817155,
+  "deletions": 71758
+ },
+ "brunohcorreia/feevoto": {
+  "branch_commits": 56,
+  "commits": 56,
+  "additions": 26648,
+  "deletions": 3037
+ },
+ "brunohcorreia/youtube_religiao": {
+  "branch_commits": 21,
+  "commits": 21,
+  "additions": 231649,
+  "deletions": 678
+ },
+ "brunohcorreia/brunohcorreia": {
+  "branch_commits": 5,
+  "commits": 5,
+  "additions": 1055,
+  "deletions": 109
+ },
+ "brunohcorreia/reworld": {
+  "branch_commits": 1788,
+  "commits": 1788,
+  "additions": 615600,
+  "deletions": 113899
+ },
+ "brunohcorreia/youtube-fakenews": {
+  "branch_commits": 75,
+  "commits": 75,
+  "additions": 25309,
+  "deletions": 2498
+ }
+}
